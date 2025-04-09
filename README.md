@@ -26,7 +26,7 @@ Project Structure
         → Frontend HTML template for user input and displaying suggestions
 
   
-## 🛠 How to Run
+##  How to Run
 
 1. Clone this repo:
    ```bash
