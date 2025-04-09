@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Keyboard Auto Suggest</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            text-align: center;
+            padding-top: 50px;
+        }
+        form {
+            margin-bottom: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 10px 0;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            width: 400px;
+            margin: 10px auto;
+            box-shadow: 0 0 5px #ccc;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔤 Keyboard Auto Suggest (NLP)</h1>
+    <form method="POST" action="/suggest">
+        <input type="text" name="keyword" placeholder="Type a word..." required>
+        <button type="submit">Suggest</button>
+    </form>
+
+    {% if keyword %}
+        <h3>Suggestions for: "{{ keyword }}"</h3>
+    {% endif %}
+
+    {% if suggestions %}
+        <ul>
+            {% for s in suggestions %}
+                <li>{{ s['Word'] }} (Similarity: {{ s['Similarity'] | round(2) }})</li>
+            {% endfor %}
+        </ul>
+    {% elif keyword %}
+        <p>No suggestions found.</p>
+    {% endif %}
+</body>
+</html>
